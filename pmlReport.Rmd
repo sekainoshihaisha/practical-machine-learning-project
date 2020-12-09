@@ -90,6 +90,8 @@ ldaPrediction <- predict(ldaModFit, newdata = testing)
 confusionMatrix(ldaPrediction, testing$classe)
 ```
 
+As shown above, there is an aproximate accuracy of 70%, given that there is an error output of 30%. This may lead to a big breach in what it is expected, meaning that using this model may give some volatile results.
+
 ### Bayesian method
 
 ```{r, warning = FALSE, message = FALSE}
@@ -100,6 +102,8 @@ nbModFit <- train(classe ~ ., method = "nb", data = training)
 nbPrediction <- predict(nbModFit, newdata = testing)
 confusionMatrix(nbPrediction, testing$classe)
 ```
+
+For the bayesian method, the accuracy is an approximate of 75% (a little bit trusthful than the linear discriminant analysis), setting with an estimated error of 25%. Eventhough the breach of accuracy is lower than the LDA model, it may cause some noise in the analysis.
 
 ### Decision tree
 
@@ -113,6 +117,8 @@ dtPrediction <- predict(dtModFit, newdata = testing)
 confusionMatrix(dtPrediction, as.factor(testing$classe))
 ```
 
+The decision tree is one of the lowest accuray model thus far. With an approximate accuracy level of 60% it would leave with a 40% estimate error level. The use of this model would be poor for the study with the give situation of having some proper considerations for the dataset.
+
 ### Random forest
 
 ```{r}
@@ -125,6 +131,8 @@ plot(rfModFit$finalModel, main = "")
 rfPrediction <- predict(rfModFit, newdata = testing)
 confusionMatrix(rfPrediction, testing$classe)
 ```
+
+The random forest has the highest rate of accuracy of >99%, leaving with a <1% estimate error. This indicates that the random forest would be the ideal model instance for this study. In this instance, the RF model will be the one that has to be used for the real testing dataset to get a more realistic output according to the available data.
 
 ## Final results
 

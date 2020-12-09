@@ -113,35 +113,37 @@ confusionMatrix(ldaPrediction, testing$classe)
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 1338  147  110   50   51
-##          B   43  763  113   55  190
-##          C  147  133  640  132  111
-##          D  141   51  139  676  124
-##          E    5   45   24   51  606
+##          A 1334  164   94   46   37
+##          B   37  740  104   54  198
+##          C  150  141  682  107  105
+##          D  146   48  121  700  126
+##          E    7   46   25   57  616
 ## 
 ## Overall Statistics
-##                                           
-##                Accuracy : 0.6836          
-##                  95% CI : (0.6715, 0.6955)
-##     No Information Rate : 0.2845          
-##     P-Value [Acc > NIR] : < 2.2e-16       
-##                                           
-##                   Kappa : 0.6             
-##                                           
-##  Mcnemar's Test P-Value : < 2.2e-16       
+##                                         
+##                Accuracy : 0.6919        
+##                  95% CI : (0.68, 0.7037)
+##     No Information Rate : 0.2845        
+##     P-Value [Acc > NIR] : < 2.2e-16     
+##                                         
+##                   Kappa : 0.6108        
+##                                         
+##  Mcnemar's Test P-Value : < 2.2e-16     
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.7993   0.6699   0.6238   0.7012   0.5601
-## Specificity            0.9150   0.9155   0.8924   0.9075   0.9740
-## Pos Pred Value         0.7889   0.6555   0.5503   0.5977   0.8290
-## Neg Pred Value         0.9198   0.9204   0.9183   0.9394   0.9076
+## Sensitivity            0.7969   0.6497   0.6647   0.7261   0.5693
+## Specificity            0.9190   0.9172   0.8965   0.9104   0.9719
+## Pos Pred Value         0.7964   0.6531   0.5755   0.6135   0.8202
+## Neg Pred Value         0.9192   0.9160   0.9268   0.9444   0.9092
 ## Prevalence             0.2845   0.1935   0.1743   0.1638   0.1839
-## Detection Rate         0.2274   0.1297   0.1088   0.1149   0.1030
-## Detection Prevalence   0.2882   0.1978   0.1976   0.1922   0.1242
-## Balanced Accuracy      0.8571   0.7927   0.7581   0.8044   0.7670
+## Detection Rate         0.2267   0.1257   0.1159   0.1189   0.1047
+## Detection Prevalence   0.2846   0.1925   0.2014   0.1939   0.1276
+## Balanced Accuracy      0.8580   0.7834   0.7806   0.8183   0.7706
 ```
+
+As shown above, there is an aproximate accuracy of 70%, given that there is an error output of 30%. This may lead to a big breach in what it is expected, meaning that using this model may give some volatile results.
 
 ### Bayesian method
 
@@ -161,35 +163,37 @@ confusionMatrix(nbPrediction, testing$classe)
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 1460  230  222  188   61
-##          B   27  753   67    2   94
-##          C   48   83  705  129   43
-##          D  122   57   25  597   33
-##          E   17   16    7   48  851
+##          A 1463  239  240  177   57
+##          B   37  754   67    3   99
+##          C   51   84  683  108   40
+##          D  111   54   33  626   45
+##          E   12    8    3   50  841
 ## 
 ## Overall Statistics
-##                                          
-##                Accuracy : 0.7419         
-##                  95% CI : (0.7305, 0.753)
-##     No Information Rate : 0.2845         
-##     P-Value [Acc > NIR] : < 2.2e-16      
-##                                          
-##                   Kappa : 0.67           
-##                                          
-##  Mcnemar's Test P-Value : < 2.2e-16      
+##                                           
+##                Accuracy : 0.7421          
+##                  95% CI : (0.7307, 0.7532)
+##     No Information Rate : 0.2845          
+##     P-Value [Acc > NIR] : < 2.2e-16       
+##                                           
+##                   Kappa : 0.6701          
+##                                           
+##  Mcnemar's Test P-Value : < 2.2e-16       
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.8722   0.6611   0.6871   0.6193   0.7865
-## Specificity            0.8335   0.9600   0.9376   0.9518   0.9817
-## Pos Pred Value         0.6756   0.7985   0.6994   0.7158   0.9063
-## Neg Pred Value         0.9425   0.9219   0.9342   0.9273   0.9533
+## Sensitivity            0.8740   0.6620   0.6657   0.6494   0.7773
+## Specificity            0.8307   0.9566   0.9418   0.9506   0.9848
+## Pos Pred Value         0.6723   0.7854   0.7070   0.7204   0.9201
+## Neg Pred Value         0.9431   0.9218   0.9303   0.9326   0.9515
 ## Prevalence             0.2845   0.1935   0.1743   0.1638   0.1839
-## Detection Rate         0.2481   0.1280   0.1198   0.1014   0.1446
-## Detection Prevalence   0.3672   0.1602   0.1713   0.1417   0.1596
-## Balanced Accuracy      0.8528   0.8105   0.8124   0.7856   0.8841
+## Detection Rate         0.2486   0.1281   0.1161   0.1064   0.1429
+## Detection Prevalence   0.3698   0.1631   0.1641   0.1477   0.1553
+## Balanced Accuracy      0.8523   0.8093   0.8037   0.8000   0.8810
 ```
+
+For the bayesian method, the accuracy is an approximate of 75% (a little bit trusthful than the linear discriminant analysis), setting with an estimated error of 25%. Eventhough the breach of accuracy is lower than the LDA model, it may cause some noise in the analysis.
 
 ### Decision tree
 
@@ -212,35 +216,37 @@ confusionMatrix(dtPrediction, as.factor(testing$classe))
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 1510  456  471  417  254
-##          B   27  387   36  171  224
-##          C  104  249  411  141  244
-##          D   33   47  108  235   57
-##          E    0    0    0    0  303
+##          A 1019  183   29   70   26
+##          B  230  672  133  161  344
+##          C  334  201  848  275  292
+##          D   90   83   16  458  110
+##          E    1    0    0    0  310
 ## 
 ## Overall Statistics
 ##                                           
-##                Accuracy : 0.4836          
-##                  95% CI : (0.4708, 0.4965)
+##                Accuracy : 0.5619          
+##                  95% CI : (0.5491, 0.5747)
 ##     No Information Rate : 0.2845          
 ##     P-Value [Acc > NIR] : < 2.2e-16       
 ##                                           
-##                   Kappa : 0.3251          
+##                   Kappa : 0.4501          
 ##                                           
 ##  Mcnemar's Test P-Value : < 2.2e-16       
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.9020  0.33977  0.40058  0.24378  0.28004
-## Specificity            0.6205  0.90350  0.84812  0.95021  1.00000
-## Pos Pred Value         0.4858  0.45799  0.35770  0.48958  1.00000
-## Neg Pred Value         0.9409  0.85079  0.87014  0.86512  0.86044
-## Prevalence             0.2845  0.19354  0.17434  0.16381  0.18386
-## Detection Rate         0.2566  0.06576  0.06984  0.03993  0.05149
-## Detection Prevalence   0.5281  0.14359  0.19524  0.08156  0.05149
-## Balanced Accuracy      0.7613  0.62163  0.62435  0.59699  0.64002
+## Sensitivity            0.6087   0.5900   0.8265  0.47510  0.28651
+## Specificity            0.9269   0.8171   0.7732  0.93924  0.99979
+## Pos Pred Value         0.7679   0.4364   0.4349  0.60502  0.99678
+## Neg Pred Value         0.8563   0.8925   0.9548  0.90133  0.86150
+## Prevalence             0.2845   0.1935   0.1743  0.16381  0.18386
+## Detection Rate         0.1732   0.1142   0.1441  0.07782  0.05268
+## Detection Prevalence   0.2255   0.2617   0.3314  0.12863  0.05285
+## Balanced Accuracy      0.7678   0.7036   0.7999  0.70717  0.64315
 ```
+
+The decision tree is one of the lowest accuray model thus far. With an approximate accuracy level of 60% it would leave with a 40% estimate error level. The use of this model would be poor for the study with the give situation of having some proper considerations for the dataset.
 
 ### Random forest
 
@@ -264,35 +270,37 @@ confusionMatrix(rfPrediction, testing$classe)
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 1673    5    0    0    0
-##          B    1 1128    9    0    0
-##          C    0    5 1015   18    3
-##          D    0    1    2  946    0
-##          E    0    0    0    0 1079
+##          A 1670   10    0    0    0
+##          B    3 1126    7    0    0
+##          C    1    2 1017    8    2
+##          D    0    1    2  955    1
+##          E    0    0    0    1 1079
 ## 
 ## Overall Statistics
-##                                         
-##                Accuracy : 0.9925        
-##                  95% CI : (0.99, 0.9946)
-##     No Information Rate : 0.2845        
-##     P-Value [Acc > NIR] : < 2.2e-16     
-##                                         
-##                   Kappa : 0.9905        
-##                                         
-##  Mcnemar's Test P-Value : NA            
+##                                           
+##                Accuracy : 0.9935          
+##                  95% CI : (0.9911, 0.9954)
+##     No Information Rate : 0.2845          
+##     P-Value [Acc > NIR] : < 2.2e-16       
+##                                           
+##                   Kappa : 0.9918          
+##                                           
+##  Mcnemar's Test P-Value : NA              
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.9994   0.9903   0.9893   0.9813   0.9972
-## Specificity            0.9988   0.9979   0.9946   0.9994   1.0000
-## Pos Pred Value         0.9970   0.9912   0.9750   0.9968   1.0000
-## Neg Pred Value         0.9998   0.9977   0.9977   0.9964   0.9994
+## Sensitivity            0.9976   0.9886   0.9912   0.9907   0.9972
+## Specificity            0.9976   0.9979   0.9973   0.9992   0.9998
+## Pos Pred Value         0.9940   0.9912   0.9874   0.9958   0.9991
+## Neg Pred Value         0.9990   0.9973   0.9981   0.9982   0.9994
 ## Prevalence             0.2845   0.1935   0.1743   0.1638   0.1839
-## Detection Rate         0.2843   0.1917   0.1725   0.1607   0.1833
-## Detection Prevalence   0.2851   0.1934   0.1769   0.1613   0.1833
-## Balanced Accuracy      0.9991   0.9941   0.9920   0.9904   0.9986
+## Detection Rate         0.2838   0.1913   0.1728   0.1623   0.1833
+## Detection Prevalence   0.2855   0.1930   0.1750   0.1630   0.1835
+## Balanced Accuracy      0.9976   0.9932   0.9943   0.9949   0.9985
 ```
+
+The random forest has the highest rate of accuracy of >99%, leaving with a <1% estimate error. This indicates that the random forest would be the ideal model instance for this study. In this instance, the RF model will be the one that has to be used for the real testing dataset to get a more realistic output according to the available data.
 
 ## Final results
 
