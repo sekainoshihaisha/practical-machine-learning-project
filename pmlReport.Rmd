@@ -1,0 +1,137 @@
+---
+title: "Human activity recognition report"
+author: "Brian Téllez"
+date: "9/12/2020"
+output: 
+    html_document:
+        keep_md: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+setwd("E:/Data Science/Curso 8/Semana 4/Project")
+```
+
+## Summary
+
+Mechanical movement of some parts of the body were recorded by different artifacts to quantified those movements according to different parameters. In this experiment, accelerometers were reading lectures of belt, forearm, arm and dumbell. The purpose of this study is to give an overview of how well the subjects did with the experiment.
+
+## Data analysis
+
+First it is necessay to load the needed packages for the analysis and models that will be used.
+
+```{r, message=FALSE, warning=FALSE, results='hide'}
+library(caret)
+library(rattle)
+```
+
+One of the basic things that is needed to do is to load the data.
+
+```{r, results='hide'}
+testingFile <- read.csv("data/pml-testing.csv")
+trainingFile <- read.csv("data/pml-training.csv")
+```
+
+One of the approaches to know the data is to look at the dimensions of the dataset.
+
+```{r}
+dim(testingFile)
+```
+
+```{r}
+dim(trainingFile)
+```
+
+As it can be seen:
+
+* The testing file has 160 variables and 20 observations.
+
+* The training file has 160 variables and 19622 observations.
+
+In this aspect, it can be a little bit overwhelming to get a peek in the data, since there is a large number of variables in the two datasets.
+
+One of the considerations of large datasets is that there may be some null and/or non beneficial data in the observations. In this case, it is needed to clean the data. For this instance, variables with little variance and variables with a considerable quantity of missing values should be listed out.
+
+```{r}
+noVarianceData <- nearZeroVar(trainingFile)
+trainingFile <- trainingFile[, -noVarianceData]
+
+naVariables <- sapply(trainingFile, function(x) mean(is.na(x))) > 0.95
+trainingFile <- trainingFile[, naVariables == FALSE]
+```
+
+There also are some variables that are not part of the valuable data, so the dataset can be reduced a little bit more in that aspect.
+
+```{r}
+trainingFile <- trainingFile[, -c(1:7)]
+dim(trainingFile)
+```
+
+As shown above, the variables were reduced by 67.5%. With this resulting dataset, it can be said that it is ready to get some models applied.
+
+For this part of the analysis, the train data should be split into two to get the prediction work in the process. This analysis may be taken before considering the 20 principals cases in the testing archive.
+
+```{r, warning=FALSE}
+inTrain <- createDataPartition(trainingFile$classe, p = 0.7, list = FALSE)
+training <- trainingFile[inTrain,]
+testing <- trainingFile[-inTrain,]
+```
+
+With these data established, some models can be stated to get the most trustful for the testing observations of the original data.
+
+### Linear discriminant analysis
+
+```{r, warning = FALSE}
+ldaModFit <- train(classe ~ ., data = training, method = "lda")
+```
+
+```{r}
+ldaPrediction <- predict(ldaModFit, newdata = testing)
+confusionMatrix(ldaPrediction, testing$classe)
+```
+
+### Bayesian method
+
+```{r, warning = FALSE, message = FALSE}
+nbModFit <- train(classe ~ ., method = "nb", data = training)
+```
+
+```{r, warning = FALSE}
+nbPrediction <- predict(nbModFit, newdata = testing)
+confusionMatrix(nbPrediction, testing$classe)
+```
+
+### Decision tree
+
+```{r}
+dtModFit <- train(classe ~ ., method = "rpart", data = training)
+fancyRpartPlot(dtModFit$finalModel)
+```
+
+```{r}
+dtPrediction <- predict(dtModFit, newdata = testing)
+confusionMatrix(dtPrediction, as.factor(testing$classe))
+```
+
+### Random forest
+
+```{r}
+rfControl <- trainControl(method = "cv", number = 3, verboseIter = FALSE)
+rfModFit <- train(classe ~ ., method = "rf", trControl = rfControl, data = training)
+plot(rfModFit$finalModel, main = "")
+```
+
+```{r}
+rfPrediction <- predict(rfModFit, newdata = testing)
+confusionMatrix(rfPrediction, testing$classe)
+```
+
+## Final results
+
+As what it can be considered in the models tested for the training dataset, the accuracies from each one would be the exact data needed to stablish the reasonable method to use.
+
+In this case, modeling with random forest would give a close approach to the expected output for the original testing file, since it is the model with an accuracy near to 100%.
+
+```{r}
+predict(rfModFit, newdata = testingFile)
+```
